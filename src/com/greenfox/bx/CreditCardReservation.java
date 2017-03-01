@@ -1,10 +1,14 @@
 package com.greenfox.bx;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
  * Created by kond on 2017. 03. 01..
  */
-public class CreditCardReservation implements CreditCardy, Reservationy {
+public class CreditCardReservation implements CreditCardy, Reservationy, Comparable {
   final static String ls = "01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  final static String[] lsDow = { "MON","TUE","WED","THU","FRI","SAT","SUN"};
   private int sumCVV;
   private String nameCardholder;
   private String codeAccount;
@@ -108,4 +112,62 @@ public class CreditCardReservation implements CreditCardy, Reservationy {
     return "Booking# " + this.codeBooking + " for " + this.dowBooking + " paid by " +
     "Name=" + this.nameCardholder + " CC#=" + this.codeAccount + " CVV#=" + this.sumCVV;
   }
+
+  @Override
+  public int compareTo(Object reservation) {
+    return this.getSumCVV() - ((CreditCardReservation) reservation).getSumCVV();
+  }
+
+  public static Comparator<CreditCardReservation> ReservationNumberASC =
+          new Comparator<CreditCardReservation>() {
+            @Override
+            public int compare(CreditCardReservation o1, CreditCardReservation o2) {
+              return o1.getCodeBooking().toUpperCase().compareTo(o2.getCodeBooking().toUpperCase());
+            }
+  };
+
+  public static Comparator<CreditCardReservation> ReservationNumberDESC =
+          new Comparator<CreditCardReservation>() {
+            @Override
+            public int compare(CreditCardReservation o1, CreditCardReservation o2) {
+              return o2.getCodeBooking().toUpperCase().compareTo(o1.getCodeBooking().toUpperCase());
+            }
+  };
+
+  public static Comparator<CreditCardReservation> CreditCardNumberASC =
+          new Comparator<CreditCardReservation>() {
+            @Override
+            public int compare(CreditCardReservation o1, CreditCardReservation o2) {
+              return o1.getCodeAccount().toUpperCase().compareTo(o2.getCodeAccount().toUpperCase());
+            }
+  };
+
+  public static Comparator<CreditCardReservation> CreditCardNumberDESC =
+          new Comparator<CreditCardReservation>() {
+            @Override
+            public int compare(CreditCardReservation o1, CreditCardReservation o2) {
+              return o2.getCodeAccount().toUpperCase().compareTo(o1.getCodeAccount().toUpperCase());
+            }
+  };
+
+  public static Comparator<CreditCardReservation> DOWASC =
+          new Comparator<CreditCardReservation>() {
+            @Override
+            public int compare(CreditCardReservation o1, CreditCardReservation o2) {
+              String o1Pos = Integer.toString(Arrays.asList(lsDow).indexOf(o1.getDowBooking()));
+              String o2Pos = Integer.toString(Arrays.asList(lsDow).indexOf(o2.getDowBooking()));
+              return o1Pos.compareTo(o2Pos);
+            }
+  };
+
+  public static Comparator<CreditCardReservation> DOWDESC =
+          new Comparator<CreditCardReservation>() {
+            @Override
+            public int compare(CreditCardReservation o1, CreditCardReservation o2) {
+              String o1Pos = Integer.toString(Arrays.asList(lsDow).indexOf(o1.getDowBooking()));
+              String o2Pos = Integer.toString(Arrays.asList(lsDow).indexOf(o2.getDowBooking()));
+              return o2Pos.compareTo(o1Pos);
+            }
+  };
+
 }

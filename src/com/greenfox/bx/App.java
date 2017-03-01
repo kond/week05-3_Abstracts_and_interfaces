@@ -1,6 +1,8 @@
 package com.greenfox.bx;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Created by kond on 2017. 03. 01..
@@ -20,6 +22,43 @@ public class App {
     for (CreditCardReservation iBooking: bookings){
       System.out.println(iBooking.toString());
     }
+
+    System.out.println("\n ==== Sort by reservation number ascending ====");
+    Collections.sort(bookings, CreditCardReservation.ReservationNumberASC);
+    for (CreditCardReservation iBooking: bookings){
+      System.out.println(iBooking.toString());
+    }
+
+    System.out.println("\n ==== Sort by reservation number descending ====");
+    Collections.sort(bookings, CreditCardReservation.ReservationNumberDESC);
+    for (CreditCardReservation iBooking: bookings){
+      System.out.println(iBooking.toString());
+    }
+
+    System.out.println("\n ==== Sort by credit card number ascending ====");
+    Collections.sort(bookings, CreditCardReservation.CreditCardNumberASC);
+    for (CreditCardReservation iBooking: bookings){
+      System.out.println(iBooking.toString());
+    }
+
+    System.out.println("\n ==== Sort by credit card number descending ====");
+    Collections.sort(bookings, CreditCardReservation.CreditCardNumberDESC);
+    for (CreditCardReservation iBooking: bookings){
+      System.out.println(iBooking.toString());
+    }
+
+    System.out.println("\n ==== Sort by DOW ascending ====");
+    Collections.sort(bookings, CreditCardReservation.DOWASC);
+    for (CreditCardReservation iBooking: bookings){
+      System.out.println(iBooking.toString());
+    }
+
+    System.out.println("\n ==== Sort by DOW descending ====");
+    Collections.sort(bookings, CreditCardReservation.DOWDESC);
+    for (CreditCardReservation iBooking: bookings){
+      System.out.println(iBooking.toString());
+    }
+
   }
 
   static String randomDow(int ct) {
