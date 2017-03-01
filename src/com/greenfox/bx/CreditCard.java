@@ -53,7 +53,7 @@ public class CreditCard implements CreditCardy {
     int cvv = 0;
 
     for(int i=0; i<codeAccount.length()-1; i++) {
-      cvv += (int) codeAccount.charAt(i);
+      cvv += Integer.parseInt(codeAccount.substring(i, i+1));
     }
 
     return cvv;
@@ -64,6 +64,7 @@ public class CreditCard implements CreditCardy {
     return (sumCVV == cumeSumCVV(codeAccount)) ? true : false;
   }
 
+  @Override
   //String.format("Name=%s CC#=%s CVV=%d")
   public String toString() {
     return "Name=" + this.nameCardholder + " CC#=" + this.codeAccount + " CVV#=" + this.sumCVV;

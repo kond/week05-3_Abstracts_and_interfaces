@@ -7,11 +7,11 @@ public class Reservation implements Reservationy {
 
   final static String ls = "01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   private String codeBooking;
-  private String dow;
+  private String dowBooking;
 
-  public Reservation(String dow) {
+  public Reservation(String dowBooking) {
     this.codeBooking = randomZeroToZ(8);
-    this.dow = dow;
+    this.dowBooking = dowBooking;
   }
 
   private static String randomZeroToZ(int len) {
@@ -24,35 +24,36 @@ public class Reservation implements Reservationy {
 
   @Override
   public void setDowBooking(String dowBooking) {
-
+    this.dowBooking = dowBooking;
   }
 
   @Override
   public String getDowBooking() {
-    return null;
+    return this.dowBooking;
   }
 
   @Override
   public void setCodeBooking(String codeBooking) {
-
+    this.codeBooking = codeBooking;
   }
 
   @Override
   public String getCodeBooking() {
-    return null;
+    return this.codeBooking;
   }
 
   @Override
   public boolean PlaceReserved(String dowBooking, String codeBooking) {
-    return false;
+    return true;
   }
 
   @Override
   public boolean PlaceCancelled(String dowBooking, String codeBooking) {
-    return false;
+    return true;
   }
 
+  @Override
   public String toString() {
-    return "Booking# " + this.codeBooking + " for " + this.dow;
+    return "Booking# " + this.codeBooking + " for " + this.dowBooking;
   }
 }
